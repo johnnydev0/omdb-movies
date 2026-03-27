@@ -12,6 +12,73 @@ body {
   padding: 0 24px 48px;
 }
 
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.search {
+  position: relative;
+  background: #2f3640;
+  height: 40px;
+  border-radius: 40px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.search:focus-within > .search-input,
+.search:hover > .search-input {
+  width: 240px;
+  padding: 0 6px;
+}
+
+.search:focus-within > .search-button,
+.search:hover > .search-button {
+  background: white;
+  color: #2f3640;
+}
+
+.search-button {
+  color: white;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #2f3640;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.search-input {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0;
+  color: white;
+  font-size: 16px;
+  transition: 0.4s;
+  line-height: 40px;
+  width: 0;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media screen and (max-width: 620px) {
+  .search:focus-within > .search-input,
+  .search:hover > .search-input {
+    width: 150px;
+    padding: 0 6px;
+  }
+}
+
 .movie-list,
 .shelf__list {
   list-style: none;
