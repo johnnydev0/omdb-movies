@@ -1,12 +1,7 @@
-const API_KEY = '342aa484';
-
 async function request(params, signal) {
-  const url = new URL('https://www.omdbapi.com/');
+  const url = new URL('/api/omdb', location.origin);
 
-  url.search = new URLSearchParams({
-    apikey: API_KEY,
-    ...params,
-  });
+  url.search = new URLSearchParams(params);
 
   const response = await fetch(url, { signal });
 
