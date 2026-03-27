@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OMDB Search</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+
+  <body>
+    <main class="container">
+      <header class="header">
+        <div class="search">
+          <input
+            class="search-input"
+            type="search"
+            id="search-input"
+            placeholder="Shrek 2"
+          />
+        </div>
+      </header>
+
+      <section class="results" id="results" hidden>
+        <ul class="movie-list" id="movie-list" role="list"></ul>
+      </section>
+
+      <!-- Sessões iniciais (conteúdo que aparece quando não tiver query) -->
+      <section class="shelves" id="shelves">
+        <div class="shelf">
+          <h2 class="shelf__title">Lançados recentemente</h2>
+          <ul class="shelf__list" id="shelf-recent" role="list"></ul>
+        </div>
+
+        <div class="shelf">
+          <h2 class="shelf__title">Sugeridos para você</h2>
+          <ul class="shelf__list" id="shelf-suggested" role="list"></ul>
+        </div>
+
+        <div class="shelf">
+          <h2 class="shelf__title">Top 5</h2>
+          <ul class="shelf__list" id="shelf-top" role="list"></ul>
+        </div>
+      </section>
+    </main>
+
+<script type="module" src="js/main.js"></script>
+  </body>
+</html>
