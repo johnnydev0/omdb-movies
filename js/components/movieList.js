@@ -20,3 +20,11 @@ export function renderMessage(text) {
   msg.textContent = text;
   list.appendChild(msg);
 }
+
+export function renderLoading() {
+  list.innerHTML = '';
+  const msg = document.createElement('p');
+  msg.className = 'results__message';
+  msg.textContent = 'Buscando...';
+  list.appendChild(msg);
+}

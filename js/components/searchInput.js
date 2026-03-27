@@ -1,5 +1,5 @@
 import { getMovies } from '../api.js';
-import { renderResults, renderMessage } from './movieList.js';
+import { renderResults, renderMessage, renderLoading } from './movieList.js';
 import { debounce } from '../utils/debounce.js';
 
 const input = document.getElementById('search-input');
@@ -17,6 +17,10 @@ async function handleSearch(query) {
 
   if (currentController) currentController.abort();
   currentController = new AbortController();
+
+  renderLoading();
+  shelves.hidden = true;
+  results.hidden = false;
 
   try {
     const movies = await getMovies(query, currentController.signal);
