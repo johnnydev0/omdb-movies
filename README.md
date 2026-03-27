@@ -1,5 +1,7 @@
 # OMDB Search
 
+Pode ser acessado através de: https://omdb-movies-blue.vercel.app/
+
 ## Como rodar
 
 O projeto usa ES Modules nativos do browser, então **não funciona abrindo o `index.html` diretamente** — é necessário servir os arquivos por um servidor HTTP.
