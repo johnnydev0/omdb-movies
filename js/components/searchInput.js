@@ -6,6 +6,8 @@ const input = document.getElementById('search-input');
 const results = document.getElementById('results');
 const shelves = document.getElementById('shelves');
 
+let currentController = null;
+
 async function handleSearch(query) {
   if (!query.trim()) {
     results.hidden = true;
@@ -13,12 +15,16 @@ async function handleSearch(query) {
     return;
   }
 
+  if (currentController) currentController.abort();
+  currentController = new AbortController();
+
   try {
-    const movies = await getMovies(query);
+    const movies = await getMovies(query, currentController.signal);
     renderResults(movies);
     shelves.hidden = true;
     results.hidden = false;
-  } catch {
+  } catch (err) {
+    if (err.name === 'AbortError') return;
     renderResults([]);
   }
 }

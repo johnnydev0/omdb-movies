@@ -1,6 +1,6 @@
 const API_KEY = '342aa484';
 
-async function request(params) {
+async function request(params, signal) {
   const url = new URL('https://www.omdbapi.com/');
 
   url.search = new URLSearchParams({
@@ -8,7 +8,7 @@ async function request(params) {
     ...params,
   });
 
-  const response = await fetch(url);
+  const response = await fetch(url, { signal });
 
   if (!response.ok) {
     throw new Error(`HTTP error: ${response.status}`);
@@ -19,10 +19,10 @@ async function request(params) {
   return data;
 }
 
-export async function getMovies(query) {
+export async function getMovies(query, signal) {
   if (!query) return [];
 
-  const data = await request({ s: query });
+  const data = await request({ s: query }, signal);
 
   return data.Search || [];
 }
