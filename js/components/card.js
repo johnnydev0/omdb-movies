@@ -14,7 +14,7 @@ export function createCard(movie) {
 
   card.innerHTML = `
     <div class="card__poster-wrapper">
-      <img class="${posterClass}" src="${posterSrc}" alt="${movie.Title}" loading="lazy" />
+      <img class="${posterClass}" src="${posterSrc}" alt="${movie.Title}" loading="lazy" onerror="this.parentElement.classList.add('card__poster--placeholder');this.remove()" />
     </div>
     <div class="card__info">
       <span class="card__type">${typeLabels[movie.Type] ?? movie.Type}</span>

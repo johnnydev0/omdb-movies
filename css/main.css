@@ -115,7 +115,8 @@ body {
   display: block;
 }
 
-.card__poster--placeholder {
+.card__poster--placeholder,
+.card__poster-wrapper.card__poster--placeholder {
   background: #3a3a3a url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='1.5'%3E%3Crect x='2' y='2' width='20' height='20' rx='3'/%3E%3Ccircle cx='8.5' cy='8.5' r='1.5'/%3E%3Cpath d='m21 15-5-5L5 21'/%3E%3C/svg%3E") center / 48px no-repeat;
 }
 
