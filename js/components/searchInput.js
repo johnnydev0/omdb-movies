@@ -1,5 +1,5 @@
 import { getMovies } from '../api.js';
-import { renderResults } from './movieList.js';
+import { renderResults, renderMessage } from './movieList.js';
 import { debounce } from '../utils/debounce.js';
 
 const input = document.getElementById('search-input');
@@ -20,12 +20,18 @@ async function handleSearch(query) {
 
   try {
     const movies = await getMovies(query, currentController.signal);
-    renderResults(movies);
+    if (movies.length === 0) {
+      renderMessage(`Nenhum resultado encontrado para "${query}".`);
+    } else {
+      renderResults(movies);
+    }
     shelves.hidden = true;
     results.hidden = false;
   } catch (err) {
     if (err.name === 'AbortError') return;
-    renderResults([]);
+    renderMessage('Erro ao buscar resultados. Tente novamente.');
+    shelves.hidden = true;
+    results.hidden = false;
   }
 }
 

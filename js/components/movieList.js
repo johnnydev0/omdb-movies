@@ -12,3 +12,11 @@ export function renderResults(movies) {
     list.appendChild(card);
   });
 }
+
+export function renderMessage(text) {
+  list.innerHTML = '';
+  const msg = document.createElement('p');
+  msg.className = 'results__message';
+  msg.textContent = text;
+  list.appendChild(msg);
+}
