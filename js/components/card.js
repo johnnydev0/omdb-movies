@@ -9,16 +9,13 @@ export function createCard(movie) {
   card.classList.add('card');
   card.dataset.id = movie.imdbID;
 
-  const posterSrc = movie.Poster !== 'N/A' ? movie.Poster : '';
-  const posterClass = movie.Poster !== 'N/A' ? 'card__poster' : 'card__poster card__poster--placeholder';
-
   card.innerHTML = `
     <div class="card__poster-wrapper">
-      <img class="${posterClass}" src="${posterSrc}" alt="${movie.Title}" loading="lazy" onerror="this.parentElement.classList.add('card__poster--placeholder');this.remove()" />
+      <img class="card__poster" loading="lazy" />
     </div>
     <div class="card__info">
-      <span class="card__type">${typeLabels[movie.Type] ?? movie.Type}</span>
-      <h2 class="card__title">${movie.Title}</h2>
+      <span class="card__type"></span>
+      <h2 class="card__title"></h2>
     </div>
     <div class="card__details" role="tooltip" aria-hidden="true">
       <p class="card__details-loading">Carregando...</p>
@@ -32,6 +29,22 @@ export function createCard(movie) {
       </div>
     </div>
   `;
+
+  const img = card.querySelector('.card__poster');
+  if (movie.Poster !== 'N/A') {
+    img.src = movie.Poster;
+    img.alt = movie.Title;
+    img.onerror = () => {
+      img.parentElement.classList.add('card__poster--placeholder');
+      img.remove();
+    };
+  } else {
+    img.parentElement.classList.add('card__poster--placeholder');
+    img.remove();
+  }
+
+  card.querySelector('.card__type').textContent = typeLabels[movie.Type] ?? movie.Type;
+  card.querySelector('.card__title').textContent = movie.Title;
 
   return card;
 }
