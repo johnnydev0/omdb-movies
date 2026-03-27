@@ -1,7 +1,12 @@
-async function request(params, signal) {
-  const url = new URL('/api/omdb', location.origin);
+const IS_LOCAL = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+const API_KEY = '342aa484';
 
-  url.search = new URLSearchParams(params);
+async function request(params, signal) {
+  const url = IS_LOCAL
+    ? new URL('https://www.omdbapi.com/')
+    : new URL('/api/omdb', location.origin);
+
+  url.search = new URLSearchParams(IS_LOCAL ? { apikey: API_KEY, ...params } : params);
 
   const response = await fetch(url, { signal });
 
